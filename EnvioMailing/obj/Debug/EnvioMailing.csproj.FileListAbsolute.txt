@@ -1,0 +1,12 @@
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\bin\Debug\EnvioMailing.exe.config
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\bin\Debug\EnvioMailing.exe
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\bin\Debug\EnvioMailing.pdb
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.csprojResolveAssemblyReference.cache
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.frmPrincipal.resources
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.Properties.Resources.resources
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.csproj.GenerateResource.Cache
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.exe
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.pdb
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.frmCorpoEmail.resources
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.frmAssunto.resources
+c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.frmConfiguracao.resources
