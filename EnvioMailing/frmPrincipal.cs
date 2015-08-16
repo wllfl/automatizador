@@ -179,6 +179,10 @@ namespace EnvioMailing
             string nameFile = null;
             string listaEmails = null;
             int contador = 0;
+            int contadorGeral = 0;
+            int contadorErros = 0;
+            int contadorSucesso = 0;
+            int totalLinhas = 0;
 
             foreach(string mailing in this.listaMailing)
             {
@@ -186,14 +190,19 @@ namespace EnvioMailing
                 {
                     nameFile = Path.GetFileNameWithoutExtension(mailing);
                     string[] emails = File.ReadAllLines(@mailing);
+                    totalLinhas = System.IO.File.ReadAllLines(@mailing).Length;
+
                     foreach (string email in emails)
                     {
                         if (contador <= this.QtdeBlocos)
                         {
                             listaEmails += email + "\n";
+                            listaEmailsEnviados.Items.Add(email);
                             contador++;
+                            contadorGeral++;
                         }
-                        else
+            
+                        if(contador == this.QtdeBlocos || contadorGeral == totalLinhas)
                         {
                             WebRequest request = WebRequest.Create("http://www.wllsistemas.com.br/disparo.php");
                             request.Method = "POST";
@@ -202,11 +211,11 @@ namespace EnvioMailing
                             Random random = new Random();
                             int randomNumber = random.Next(0, this.listaAssunto.Count());
                             string postData = HttpUtility.UrlEncode("NRemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
-                            postData = HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
-                            postData = HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode(this.CorporEmail) + "&";
-                            postData = HttpUtility.UrlEncode("Emails") + "=" + HttpUtility.UrlEncode(listaEmails) + "&";
-                            postData = HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(this.listaAssunto.ElementAt(randomNumber)) + "&";
-                            postData = HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode();
+                            postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
+                            postData += HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode(this.CorporEmail) + "&";
+                            postData += HttpUtility.UrlEncode("Emails") + "=" + HttpUtility.UrlEncode(listaEmails) + "&";
+                            postData += HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(this.listaAssunto.ElementAt(randomNumber)) + "&";
+                            postData += HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode("2");
 
                             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
                             request.ContentLength = byteArray.Length;
@@ -221,7 +230,14 @@ namespace EnvioMailing
                             dataStream = response.GetResponseStream();
                             StreamReader reader = new StreamReader(dataStream);
                             string responseFromServer = reader.ReadToEnd();
-                            MessageBox.Show(responseFromServer);
+                            
+                            string[] retorno = responseFromServer.Split('#');
+                            contadorSucesso += Convert.ToInt32(retorno[1]);
+                            contadorErros += Convert.ToInt32(retorno[2]);
+
+                            listaRetorno.Items.Add("E-mails com sucesso ("+retorno[1]+") - com erro ("+retorno[2]+")");
+                            statusStrip.Items[3].Text = Convert.ToString(contadorSucesso);
+                            statusStrip.Items[5].Text = Convert.ToString(contadorErros);
 
                             reader.Close();
                             dataStream.Close();

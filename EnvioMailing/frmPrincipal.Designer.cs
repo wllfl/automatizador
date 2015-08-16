@@ -38,7 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvHost = new System.Windows.Forms.DataGridView();
             this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.listaEmails = new System.Windows.Forms.ListBox();
+            this.listaEmailsEnviados = new System.Windows.Forms.ListBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -158,13 +158,13 @@
             this.Host.ReadOnly = true;
             this.Host.Width = 300;
             // 
-            // listaEmails
+            // listaEmailsEnviados
             // 
-            this.listaEmails.FormattingEnabled = true;
-            this.listaEmails.Location = new System.Drawing.Point(357, 250);
-            this.listaEmails.Name = "listaEmails";
-            this.listaEmails.Size = new System.Drawing.Size(323, 303);
-            this.listaEmails.TabIndex = 2;
+            this.listaEmailsEnviados.FormattingEnabled = true;
+            this.listaEmailsEnviados.Location = new System.Drawing.Point(357, 250);
+            this.listaEmailsEnviados.Name = "listaEmailsEnviados";
+            this.listaEmailsEnviados.Size = new System.Drawing.Size(323, 303);
+            this.listaEmailsEnviados.TabIndex = 2;
             // 
             // statusStrip
             // 
@@ -377,7 +377,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.listaEmails);
+            this.Controls.Add(this.listaEmailsEnviados);
             this.Controls.Add(this.dgvHost);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -401,7 +401,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvHost;
-        private System.Windows.Forms.ListBox listaEmails;
+        private System.Windows.Forms.ListBox listaEmailsEnviados;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
