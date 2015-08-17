@@ -14,14 +14,29 @@ namespace EnvioMailing
 {
     public partial class frmCorpoEmail : Form
     {
+
+        private frmPrincipal fPrincipal = null;
+
         public frmCorpoEmail()
         {
             InitializeComponent();
             carregarDados();
         }
 
+        public frmCorpoEmail(frmPrincipal form)
+        {
+            InitializeComponent();
+            carregarDados();
+            this.fPrincipal = form;
+        }
+
         private void btnFechar_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Deseja gravar as modificações?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.gravarDados();
+            }
+            this.fPrincipal.carregarDados();
             this.Close();
         }
 

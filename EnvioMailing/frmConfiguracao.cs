@@ -33,6 +33,10 @@ namespace EnvioMailing
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Deseja gravar as modificações?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.gravarDados();
+            }
             this.fPrincipal.carregarDados();
             this.Close();
         }
@@ -192,6 +196,31 @@ namespace EnvioMailing
             foreach (DataGridViewRow row in toDelete)
             {
                 dgvArquivos.Rows.Remove(row);
+            }
+        }
+
+        private void excluirTudo()
+        {
+            List<DataGridViewRow> toDelete = new List<DataGridViewRow>();
+
+            dgvArquivos.EndEdit();
+            foreach (DataGridViewRow row in dgvArquivos.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                toDelete.Add(row);
+            }
+
+            foreach (DataGridViewRow row in toDelete)
+            {
+                dgvArquivos.Rows.Remove(row);
+            }
+        }
+
+        private void txtLimparTXT_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja remover todos os TXTs da Listagem?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.excluirTudo();
             }
         }
     }

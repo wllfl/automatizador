@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Web;
 using Ini.Net;
+using System.Threading;
 
 namespace EnvioMailing
 {
@@ -67,7 +68,7 @@ namespace EnvioMailing
 
         private void btnCorpoEmail_Click(object sender, EventArgs e)
         {
-            frmCorpoEmail fCorpoEmail = new frmCorpoEmail();
+            frmCorpoEmail fCorpoEmail = new frmCorpoEmail(this);
             fCorpoEmail.Show();
         }
 
@@ -185,12 +186,12 @@ namespace EnvioMailing
                             txtRementente.Text = nameFile;
                             txtAssunto.Text = assunto;
 
-                            string postData = HttpUtility.UrlEncode("NRemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
-                            postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(this.Remetente) + "&";
+                            string postData = HttpUtility.UrlEncode("NRemetente") + "=" + HttpUtility.UrlEncode(this.Remetente) + "&";
+                            postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
                             postData += HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode(this.CorporEmail) + "&";
                             postData += HttpUtility.UrlEncode("Emails") + "=" + HttpUtility.UrlEncode(listaEmails) + "&";
                             postData += HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(assunto) + "&";
-                            postData += HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode("2");
+                            postData += HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode(Convert.ToString(this.IntevaloEmail));
 
                             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
                             request.ContentLength = byteArray.Length;
@@ -218,6 +219,8 @@ namespace EnvioMailing
                             dataStream.Close();
                             response.Close();
                             contador = 0;
+
+                            Thread.Sleep(this.IntevaloLote * 1000);
                         }
 
                     }

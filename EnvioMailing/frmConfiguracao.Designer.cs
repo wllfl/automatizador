@@ -53,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.txtLimparTXT = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtIntevaloEmail)).BeginInit();
@@ -69,6 +70,7 @@
             this.btnGravar,
             this.btnAdicionarArquivo,
             this.btnExcluirArquivo,
+            this.txtLimparTXT,
             this.btnFechar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -299,6 +301,17 @@
             this.openFileDialog.FileName = "openFileDialog1";
             this.openFileDialog.Multiselect = true;
             // 
+            // txtLimparTXT
+            // 
+            this.txtLimparTXT.AutoSize = false;
+            this.txtLimparTXT.Image = ((System.Drawing.Image)(resources.GetObject("txtLimparTXT.Image")));
+            this.txtLimparTXT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.txtLimparTXT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.txtLimparTXT.Name = "txtLimparTXT";
+            this.txtLimparTXT.Size = new System.Drawing.Size(150, 40);
+            this.txtLimparTXT.Text = "Limpar TXTs";
+            this.txtLimparTXT.Click += new System.EventHandler(this.txtLimparTXT_Click);
+            // 
             // frmConfiguracao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,5 +361,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNomeRemetente;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripButton txtLimparTXT;
     }
 }
