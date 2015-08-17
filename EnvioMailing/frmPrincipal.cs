@@ -52,8 +52,15 @@ namespace EnvioMailing
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            //enviarEmail();
-            backgroundWorker.RunWorkerAsync();
+            if (this.listaMailing.Count() > 0 && this.listaAssunto.Count() > 0 && this.CorporEmail != "" && this.Url != "")
+            {
+                //enviarEmail();
+                backgroundWorker.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show("O sistema não possui as configurações mínimas para envio, verifique! \n- Lista de Mailing \n- Lista de Assuntos \n- Conteúdo do E-mail \n- URL PHP de disparo", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
