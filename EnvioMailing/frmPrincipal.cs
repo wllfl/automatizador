@@ -31,26 +31,15 @@ namespace EnvioMailing
         List<string> listaAssunto = new List<string>();
         List<string> listaScript = new List<string>();
 
+        /*******************************************************************************************************************************************/
+
         public frmPrincipal()
         {
             InitializeComponent();
             carregarDados();
         }
 
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        /*******************************************************************************************************************************************/
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
@@ -65,10 +54,14 @@ namespace EnvioMailing
             }
         }
 
+        /*******************************************************************************************************************************************/
+
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }
+
+        /*******************************************************************************************************************************************/
 
         private void btnAssuntos_Click(object sender, EventArgs e)
         {
@@ -76,17 +69,23 @@ namespace EnvioMailing
             fAssunto.Show();
         }
 
+        /*******************************************************************************************************************************************/
+
         private void btnCorpoEmail_Click(object sender, EventArgs e)
         {
             frmCorpoEmail fCorpoEmail = new frmCorpoEmail(this);
             fCorpoEmail.Show();
         }
 
+        /*******************************************************************************************************************************************/
+
         private void btnConfigurar_Click(object sender, EventArgs e)
         {
             frmConfiguracao fConfiguracao = new frmConfiguracao(this);
             fConfiguracao.Show();
         }
+
+        /*******************************************************************************************************************************************/
 
         public void carregarDados()
         {
@@ -171,11 +170,7 @@ namespace EnvioMailing
 
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
+        /*******************************************************************************************************************************************/
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -283,36 +278,41 @@ namespace EnvioMailing
             statusStrip.Items[1].Text = "PARADO";
         }
 
+        /*******************************************************************************************************************************************/
+
         private void addLista(string linha)
         {
             this.listaEmailsEnviados.Items.Add(linha);
         }
+
+        /*******************************************************************************************************************************************/
 
         private void addListaRetorno(string linha)
         {
             this.listaRetorno.Items.Add(linha);
         }
 
+        /*******************************************************************************************************************************************/
 
         private void setNomeText(string texto)
         {
             txtNome.Text = texto;
         }
 
+        /*******************************************************************************************************************************************/
+
         private void setRemetenteText(string texto)
         {
             txtRementente.Text = texto;
         }
+
+        /*******************************************************************************************************************************************/
 
         private void setAssuntoText(string texto)
         {
             txtAssunto.Text = texto;
         }
 
-        private void toolStripStatusLabel6_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /*******************************************************************************************************************************************/
     }
 }

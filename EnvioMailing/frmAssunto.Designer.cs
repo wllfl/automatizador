@@ -142,7 +142,6 @@
             this.label1.Size = new System.Drawing.Size(104, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Informe o Assunto 1:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // frmAssunto
             // 
@@ -156,7 +155,6 @@
             this.Name = "frmAssunto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Assunto do E-mail";
-            this.Load += new System.EventHandler(this.frmAssunto_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

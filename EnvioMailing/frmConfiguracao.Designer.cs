@@ -252,7 +252,6 @@
             this.label5.Size = new System.Drawing.Size(150, 15);
             this.label5.TabIndex = 14;
             this.label5.Text = "* Campos obrigatórios";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // toolStripDropDownButton1
             // 
@@ -267,7 +266,6 @@
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(135, 40);
             this.toolStripDropDownButton1.Text = "Arquivos TXT";
-            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -437,7 +435,6 @@
             this.txtQtdeEmailScript.Name = "txtQtdeEmailScript";
             this.txtQtdeEmailScript.Size = new System.Drawing.Size(112, 24);
             this.txtQtdeEmailScript.TabIndex = 23;
-            this.txtQtdeEmailScript.ValueChanged += new System.EventHandler(this.txtQtdeEmailScript_ValueChanged);
             // 
             // frmConfiguracao
             // 

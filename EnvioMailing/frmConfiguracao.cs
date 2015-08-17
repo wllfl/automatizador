@@ -16,12 +16,16 @@ namespace EnvioMailing
     {
         private frmPrincipal fPrincipal = null;
 
+        /*******************************************************************************************************************************************/
+
         public frmConfiguracao()
         {
             InitializeComponent();
             openFileDialog.Filter = "Text Files (.txt)|*.txt";
             carregarDados();
         }
+
+        /*******************************************************************************************************************************************/
 
         public frmConfiguracao(frmPrincipal form)
         {
@@ -30,6 +34,8 @@ namespace EnvioMailing
             carregarDados();
             this.fPrincipal = form;
         }
+
+        /*******************************************************************************************************************************************/
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
@@ -41,25 +47,7 @@ namespace EnvioMailing
             this.Close();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDiretorio_Click(object sender, EventArgs e)
-        {
-            
-        }
+        /*******************************************************************************************************************************************/
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
@@ -72,6 +60,8 @@ namespace EnvioMailing
                 MessageBox.Show("Campo obrigatórios não foram preenchidos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /*******************************************************************************************************************************************/
 
         private void gravarDados()
         {
@@ -112,6 +102,8 @@ namespace EnvioMailing
             }
         }
 
+        /*******************************************************************************************************************************************/
+
         private void carregarDados()
         {
             if (File.Exists("./Config.ini"))
@@ -146,15 +138,7 @@ namespace EnvioMailing
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void btnAdicionarArquivo_Click(object sender, EventArgs e)
-        {
-           
-        }
+        /*******************************************************************************************************************************************/
 
         private Boolean isFileValido(string file)
         {
@@ -172,11 +156,7 @@ namespace EnvioMailing
             return retorno;
         }
 
-        private void btnExcluirArquivo_Click(object sender, EventArgs e)
-        {
-            
-               
-        }
+        /*******************************************************************************************************************************************/
 
         private void excluirLinha()
         {
@@ -198,6 +178,8 @@ namespace EnvioMailing
             }
         }
 
+        /*******************************************************************************************************************************************/
+
         private void excluirLinhaScript()
         {
             List<DataGridViewRow> toDelete = new List<DataGridViewRow>();
@@ -218,6 +200,8 @@ namespace EnvioMailing
             }
         }
 
+        /*******************************************************************************************************************************************/
+
         private void excluirTudo()
         {
             List<DataGridViewRow> toDelete = new List<DataGridViewRow>();
@@ -234,6 +218,8 @@ namespace EnvioMailing
                 dgvArquivos.Rows.Remove(row);
             }
         }
+
+        /*******************************************************************************************************************************************/
 
         private void excluirTudoScript()
         {
@@ -252,15 +238,7 @@ namespace EnvioMailing
             }
         }
 
-        private void txtLimparTXT_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
-        {
-
-        }
+        /*******************************************************************************************************************************************/
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -283,6 +261,8 @@ namespace EnvioMailing
             }
         }
 
+        /*******************************************************************************************************************************************/
+
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseja remover todos os itens selecionados?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
@@ -290,6 +270,8 @@ namespace EnvioMailing
                 this.excluirLinha();
             }
         }
+
+        /*******************************************************************************************************************************************/
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
@@ -299,10 +281,7 @@ namespace EnvioMailing
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
+        /*******************************************************************************************************************************************/
 
         private void btnLimparScripts_Click(object sender, EventArgs e)
         {
@@ -312,6 +291,8 @@ namespace EnvioMailing
             }
         }
 
+        /*******************************************************************************************************************************************/
+
         private void btnExcluirScript_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseja remover todos os itens selecionados?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
@@ -319,6 +300,8 @@ namespace EnvioMailing
                 this.excluirLinhaScript();
             }
         }
+
+        /*******************************************************************************************************************************************/
 
         private void btnIncluirScript_Click(object sender, EventArgs e)
         {
@@ -330,6 +313,8 @@ namespace EnvioMailing
                 }
             }
         }
+
+        /*******************************************************************************************************************************************/
 
         private Boolean isUrlValida(string file)
         {
@@ -347,10 +332,7 @@ namespace EnvioMailing
             return retorno;
         }
 
-        private void txtQtdeEmailScript_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        /*******************************************************************************************************************************************/
 
     }
 }

@@ -131,7 +131,6 @@
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dgvHost
             // 
@@ -146,7 +145,6 @@
             this.dgvHost.Name = "dgvHost";
             this.dgvHost.Size = new System.Drawing.Size(320, 141);
             this.dgvHost.TabIndex = 1;
-            this.dgvHost.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Host
             // 
@@ -199,7 +197,6 @@
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
             this.toolStripStatusLabel6.Size = new System.Drawing.Size(100, 17);
             this.toolStripStatusLabel6.Text = "PARADO";
-            this.toolStripStatusLabel6.Click += new System.EventHandler(this.toolStripStatusLabel6_Click);
             // 
             // toolStripStatusLabel1
             // 

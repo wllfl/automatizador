@@ -17,11 +17,15 @@ namespace EnvioMailing
 
         private frmPrincipal fPrincipal = null;
 
+        /*******************************************************************************************************************************************/
+
         public frmCorpoEmail()
         {
             InitializeComponent();
             carregarDados();
         }
+
+        /*******************************************************************************************************************************************/
 
         public frmCorpoEmail(frmPrincipal form)
         {
@@ -29,6 +33,8 @@ namespace EnvioMailing
             carregarDados();
             this.fPrincipal = form;
         }
+
+        /*******************************************************************************************************************************************/
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
@@ -39,6 +45,8 @@ namespace EnvioMailing
             this.fPrincipal.carregarDados();
             this.Close();
         }
+
+        /*******************************************************************************************************************************************/
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
@@ -51,6 +59,8 @@ namespace EnvioMailing
                 MessageBox.Show("Não existe texto para o e-mail!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /*******************************************************************************************************************************************/
 
         private void gravarDados()
         {
@@ -68,6 +78,8 @@ namespace EnvioMailing
             }
         }
 
+        /*******************************************************************************************************************************************/
+
         private void carregarDados()
         {
             if (File.Exists("./Config.ini"))
@@ -77,5 +89,7 @@ namespace EnvioMailing
                 txtEmail.Text = iniFile.ReadString("Email", "texto");
             }
         }
+
+        /*******************************************************************************************************************************************/
     }
 }
