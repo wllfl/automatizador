@@ -10,3 +10,15 @@ c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing
 c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.frmCorpoEmail.resources
 c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.frmAssunto.resources
 c:\users\william\documents\visual studio 2012\Projects\EnvioMailing\EnvioMailing\obj\Debug\EnvioMailing.frmConfiguracao.resources
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\bin\Debug\EnvioMailing.exe.config
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.exe
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.pdb
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\bin\Debug\EnvioMailing.exe
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\bin\Debug\EnvioMailing.pdb
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.csprojResolveAssemblyReference.cache
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.frmPrincipal.resources
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.frmAssunto.resources
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.frmConfiguracao.resources
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.frmCorpoEmail.resources
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.Properties.Resources.resources
+C:\Users\Guia São Roque\Documents\Visual Studio 2012\Projects\automatizador.git\EnvioMailing\obj\Debug\EnvioMailing.csproj.GenerateResource.Cache

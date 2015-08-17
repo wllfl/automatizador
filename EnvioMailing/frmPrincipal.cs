@@ -52,7 +52,8 @@ namespace EnvioMailing
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            enviarEmail();
+            //enviarEmail();
+            backgroundWorker.RunWorkerAsync();
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -234,5 +235,123 @@ namespace EnvioMailing
         {
             enviarEmail();
         }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string nameFile = null;
+            string listaEmails = null;
+            int contador = 0;
+            int contadorGeral = 0;
+            int contadorErros = 0;
+            int contadorSucesso = 0;
+            int totalLinhas = 0;
+
+            statusStrip.Items[1].Text = "EXECUTANDO";
+
+            foreach (string mailing in this.listaMailing)
+            {
+                if (File.Exists(mailing))
+                {
+                    nameFile = Path.GetFileNameWithoutExtension(mailing);
+                    string[] emails = File.ReadAllLines(@mailing);
+                    totalLinhas = System.IO.File.ReadAllLines(@mailing).Length;
+
+                    foreach (string email in emails)
+                    {
+                        if (contador <= this.QtdeBlocos)
+                        {
+                            listaEmails += email + "\n";
+                            listaEmailsEnviados.Invoke((Action<string>)addLista, email);
+                            contador++;
+                            contadorGeral++;
+                        }
+
+                        if (contador == this.QtdeBlocos || contadorGeral == totalLinhas)
+                        {
+                            WebRequest request = WebRequest.Create(this.Url);
+                            request.Method = "POST";
+                            request.ContentType = "application/x-www-form-urlencoded";
+
+                            Random random = new Random();
+                            int randomNumber = random.Next(0, this.listaAssunto.Count());
+                            string assunto = this.listaAssunto.ElementAt(randomNumber);
+
+                            txtNome.Invoke((Action<string>)setNomeText, this.Remetente);
+                            txtRementente.Invoke((Action<string>)setRemetenteText, nameFile);
+                            txtAssunto.Invoke((Action<string>)setAssuntoText, assunto);
+
+                            string postData = HttpUtility.UrlEncode("NRemetente") + "=" + HttpUtility.UrlEncode(this.Remetente) + "&";
+                            postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
+                            postData += HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode(this.CorporEmail) + "&";
+                            postData += HttpUtility.UrlEncode("Emails") + "=" + HttpUtility.UrlEncode(listaEmails) + "&";
+                            postData += HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(assunto) + "&";
+                            postData += HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode(Convert.ToString(this.IntevaloEmail));
+
+                            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                            request.ContentLength = byteArray.Length;
+
+                            Stream dataStream = request.GetRequestStream();
+                            dataStream.Write(byteArray, 0, byteArray.Length);
+                            dataStream.Close();
+
+                            WebResponse response = request.GetResponse();
+
+                            dataStream = response.GetResponseStream();
+                            StreamReader reader = new StreamReader(dataStream);
+                            string responseFromServer = reader.ReadToEnd();
+
+                            string[] retorno = responseFromServer.Split('#');
+                            contadorSucesso += Convert.ToInt32(retorno[1]);
+                            contadorErros += Convert.ToInt32(retorno[2]);
+
+                            listaRetorno.Invoke((Action<string>)addListaRetorno, "E-mails com sucesso (" + retorno[1] + ") - com erro (" + retorno[2] + ")");
+                            statusStrip.Items[3].Text = Convert.ToString(contadorSucesso);
+                            statusStrip.Items[5].Text = Convert.ToString(contadorErros);
+
+                            reader.Close();
+                            dataStream.Close();
+                            response.Close();
+                            contador = 0;
+
+                            Thread.Sleep(this.IntevaloLote * 1000);
+                        }
+
+                    }
+                }
+            }
+            statusStrip.Items[1].Text = "PARADO";
+        }
+
+        private void addLista(string linha)
+        {
+            this.listaEmailsEnviados.Items.Add(linha);
+        }
+
+        private void addListaRetorno(string linha)
+        {
+            this.listaRetorno.Items.Add(linha);
+        }
+
+
+        private void setNomeText(string texto)
+        {
+            txtNome.Text = texto;
+        }
+
+        private void setRemetenteText(string texto)
+        {
+            txtRementente.Text = texto;
+        }
+
+        private void setAssuntoText(string texto)
+        {
+            txtAssunto.Text = texto;
+        }
+
+        private void toolStripStatusLabel6_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

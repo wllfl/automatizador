@@ -59,6 +59,7 @@
             this.btnCorpoEmail = new System.Windows.Forms.ToolStripButton();
             this.btnEnvio = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHost)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -194,9 +195,11 @@
             // 
             this.toolStripStatusLabel6.AutoSize = false;
             this.toolStripStatusLabel6.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabel6.Enabled = false;
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(80, 17);
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(100, 17);
             this.toolStripStatusLabel6.Text = "PARADO";
+            this.toolStripStatusLabel6.Click += new System.EventHandler(this.toolStripStatusLabel6_Click);
             // 
             // toolStripStatusLabel1
             // 
@@ -211,7 +214,7 @@
             this.toolStripStatusLabel2.AutoSize = false;
             this.toolStripStatusLabel2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(80, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(70, 17);
             this.toolStripStatusLabel2.Text = "0";
             // 
             // toolStripStatusLabel3
@@ -227,7 +230,7 @@
             this.toolStripStatusLabel4.AutoSize = false;
             this.toolStripStatusLabel4.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(80, 17);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(70, 17);
             this.toolStripStatusLabel4.Text = "0";
             // 
             // toolStripStatusLabel7
@@ -241,7 +244,7 @@
             this.toolStripStatusLabel8.AutoSize = false;
             this.toolStripStatusLabel8.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
-            this.toolStripStatusLabel8.Size = new System.Drawing.Size(80, 17);
+            this.toolStripStatusLabel8.Size = new System.Drawing.Size(70, 17);
             this.toolStripStatusLabel8.Text = "0";
             // 
             // toolStripStatusLabel9
@@ -355,6 +358,12 @@
             this.btnFechar.Text = "Fechar";
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,6 +426,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
         private System.Windows.Forms.ToolStripStatusLabel stastusLista;
         private System.Windows.Forms.ToolStripButton btnFechar;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
 
