@@ -80,10 +80,10 @@ namespace EnvioMailing
                 var iniFile = new IniFile("./Config.ini");
 
                 iniFile.WriteInteger("Configuracao", "QtdeEmailBloco", Convert.ToInt32(txtQtdeLote.Value));
+                iniFile.WriteInteger("Configuracao", "QtdeEmailScript", Convert.ToInt32(txtQtdeEmailScript.Value));
                 iniFile.WriteInteger("Configuracao", "IntevaloLote", Convert.ToInt32(txtIntevaloLote.Value));
                 iniFile.WriteInteger("Configuracao", "IntevaloEmail", Convert.ToInt32(txtIntevaloEmail.Value));
                 iniFile.WriteString("Configuracao", "NomeRemetente", txtNomeRemetente.Text);
-                iniFile.WriteString("Configuracao", "URL", txtUrl.Text);
 
                 String nomeLog = "./Mailing.txt";
                 using (StreamWriter writer = new StreamWriter(nomeLog, false))
@@ -93,7 +93,16 @@ namespace EnvioMailing
 
                         writer.WriteLine(dgvArquivos.Rows[i].Cells[1].Value.ToString());
                     }
-               }
+                }
+
+                String nomeScript = "./Script.txt";
+                using (StreamWriter writer = new StreamWriter(nomeScript, false))
+                {
+                    for (int i = 0; i < dgvScripts.Rows.Count; i++)
+                    {
+                        writer.WriteLine(dgvScripts.Rows[i].Cells[1].Value.ToString());
+                    }
+                }
 
                 MessageBox.Show("Gravado com sucesso!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -112,8 +121,8 @@ namespace EnvioMailing
                 txtQtdeLote.Value = iniFile.ReadInteger("Configuracao", "QtdeEmailBloco");
                 txtIntevaloLote.Value = iniFile.ReadInteger("Configuracao", "IntevaloLote");
                 txtIntevaloEmail.Value = iniFile.ReadInteger("Configuracao", "IntevaloEmail");
+                txtQtdeEmailScript.Value = iniFile.ReadInteger("Configuracao", "QtdeEmailScript");
                 txtNomeRemetente.Text = iniFile.ReadString("Configuracao", "NomeRemetente");
-                txtUrl.Text = iniFile.ReadString("Configuracao", "URL");
 
                 if (File.Exists("./Mailing.txt"))
                 {
@@ -121,6 +130,15 @@ namespace EnvioMailing
                     foreach (string line in lines)
                     {
                         dgvArquivos.Rows.Add(false, line);
+                    }
+                }
+
+                if (File.Exists("./Script.txt"))
+                {
+                    string[] lines = File.ReadAllLines(@"./Script.txt");
+                    foreach (string line in lines)
+                    {
+                        dgvScripts.Rows.Add(false, line);
                     }
                 }
                
@@ -135,23 +153,7 @@ namespace EnvioMailing
 
         private void btnAdicionarArquivo_Click(object sender, EventArgs e)
         {
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                foreach (String file in openFileDialog.FileNames)
-                {
-                    try
-                    {
-                        if (this.isFileValido(file.ToString()))
-                        {
-                            dgvArquivos.Rows.Add(false, file);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Não possível carregar os arquivos!" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
+           
         }
 
         private Boolean isFileValido(string file)
@@ -172,10 +174,7 @@ namespace EnvioMailing
 
         private void btnExcluirArquivo_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseja remover todos os itens selecionados?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-            {
-                this.excluirLinha();
-            }
+            
                
         }
 
@@ -199,6 +198,26 @@ namespace EnvioMailing
             }
         }
 
+        private void excluirLinhaScript()
+        {
+            List<DataGridViewRow> toDelete = new List<DataGridViewRow>();
+
+            dgvScripts.EndEdit();
+            foreach (DataGridViewRow row in dgvScripts.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                if (chk.Value == chk.TrueValue)
+                {
+                    toDelete.Add(row);
+                }
+            }
+
+            foreach (DataGridViewRow row in toDelete)
+            {
+                dgvScripts.Rows.Remove(row);
+            }
+        }
+
         private void excluirTudo()
         {
             List<DataGridViewRow> toDelete = new List<DataGridViewRow>();
@@ -216,12 +235,122 @@ namespace EnvioMailing
             }
         }
 
+        private void excluirTudoScript()
+        {
+            List<DataGridViewRow> toDelete = new List<DataGridViewRow>();
+
+            dgvScripts.EndEdit();
+            foreach (DataGridViewRow row in dgvScripts.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                toDelete.Add(row);
+            }
+
+            foreach (DataGridViewRow row in toDelete)
+            {
+                dgvScripts.Rows.Remove(row);
+            }
+        }
+
         private void txtLimparTXT_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                foreach (String file in openFileDialog.FileNames)
+                {
+                    try
+                    {
+                        if (this.isFileValido(file.ToString()))
+                        {
+                            dgvArquivos.Rows.Add(false, file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Não possível carregar os arquivos!" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja remover todos os itens selecionados?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.excluirLinha();
+            }
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseja remover todos os TXTs da Listagem?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 this.excluirTudo();
             }
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLimparScripts_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja remover todos os Scripts da Listagem?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.excluirTudoScript();
+            }
+        }
+
+        private void btnExcluirScript_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja remover todos os itens selecionados?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.excluirLinhaScript();
+            }
+        }
+
+        private void btnIncluirScript_Click(object sender, EventArgs e)
+        {
+            if (txtUrl.Text != "")
+            {
+                if (this.isUrlValida(txtUrl.Text))
+                {
+                    dgvScripts.Rows.Add(false, txtUrl.Text);
+                }
+            }
+        }
+
+        private Boolean isUrlValida(string file)
+        {
+            bool retorno = true;
+
+            for (int i = 0; i < dgvScripts.Rows.Count; i++)
+            {
+                if (file == dgvScripts.Rows[i].Cells[1].Value.ToString())
+                {
+                    retorno = false;
+                    break;
+                }
+            }
+
+            return retorno;
+        }
+
+        private void txtQtdeEmailScript_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
