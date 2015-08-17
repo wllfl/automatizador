@@ -17,7 +17,9 @@ namespace EnvioMailing
     public partial class frmPrincipal : Form
     {
         private int QtdeBlocos = 0;
-        private int Intevalo = 0;
+        private int IntevaloLote = 0;
+        private int IntevaloEmail = 0;
+        private string Remetente = null;
         private string Url = null;
         private string Diretorio = null;
         private int QtdeAssuntos = 0;
@@ -49,44 +51,7 @@ namespace EnvioMailing
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            // Create a request using a URL that can receive a post. 
-            WebRequest request = WebRequest.Create("http://www.wllsistemas.com.br/disparo.php");
-
-            // Set the Method property of the request to POST.
-            request.Method = "POST";
-
-            // Create POST data and convert it to a byte array.
-            //string postData = "NRemetente=Teste de Envio";
-            string postData = HttpUtility.UrlEncode("NRemetente") + "="
-              + HttpUtility.UrlEncode("Teste de Envio");
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-
-            // Set the ContentType property of the WebRequest.
-            request.ContentType = "application/x-www-form-urlencoded";
-
-            request.ContentLength = byteArray.Length;
-
-            Stream dataStream = request.GetRequestStream();
-
-            dataStream.Write(byteArray, 0, byteArray.Length);
-
-            dataStream.Close();
-
-            WebResponse response = request.GetResponse();
-
-            MessageBox.Show(((HttpWebResponse)response).StatusDescription);
-
-            dataStream = response.GetResponseStream();
-
-            StreamReader reader = new StreamReader(dataStream);
-
-            string responseFromServer = reader.ReadToEnd();
-
-            MessageBox.Show(responseFromServer);
-
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+            enviarEmail();
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -124,7 +89,9 @@ namespace EnvioMailing
                 var iniFile = new IniFile("./Config.ini");
 
                 this.QtdeBlocos = iniFile.ReadInteger("Configuracao", "QtdeEmailBloco");
-                this.Intevalo = iniFile.ReadInteger("Configuracao", "Intevalo");
+                this.IntevaloLote = iniFile.ReadInteger("Configuracao", "IntevaloLote");
+                this.IntevaloEmail = iniFile.ReadInteger("Configuracao", "IntevaloEmail");
+                this.Remetente = iniFile.ReadString("Configuracao", "NomeRemetente");
                 this.Url = iniFile.ReadString("Configuracao", "URL");
                 this.Diretorio = iniFile.ReadString("Configuracao", "Diretorio");
                 this.CorporEmail = iniFile.ReadString("Email", "Texto");
@@ -169,7 +136,7 @@ namespace EnvioMailing
             }
             else
             {
-                MessageBox.Show("Não possível encontrar o arquivo de configuração!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Não foi possível encontrar o arquivo de configuração! \nFavor configurar todas as opções do sistema.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -183,6 +150,8 @@ namespace EnvioMailing
             int contadorErros = 0;
             int contadorSucesso = 0;
             int totalLinhas = 0;
+
+            statusStrip.Items[1].Text = "EXECUTANDO";
 
             foreach(string mailing in this.listaMailing)
             {
@@ -210,11 +179,17 @@ namespace EnvioMailing
 
                             Random random = new Random();
                             int randomNumber = random.Next(0, this.listaAssunto.Count());
+                            string assunto = this.listaAssunto.ElementAt(randomNumber);
+
+                            txtNome.Text = this.Remetente;
+                            txtRementente.Text = nameFile;
+                            txtAssunto.Text = assunto;
+
                             string postData = HttpUtility.UrlEncode("NRemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
-                            postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
+                            postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(this.Remetente) + "&";
                             postData += HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode(this.CorporEmail) + "&";
                             postData += HttpUtility.UrlEncode("Emails") + "=" + HttpUtility.UrlEncode(listaEmails) + "&";
-                            postData += HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(this.listaAssunto.ElementAt(randomNumber)) + "&";
+                            postData += HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(assunto) + "&";
                             postData += HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode("2");
 
                             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
@@ -225,7 +200,7 @@ namespace EnvioMailing
                             dataStream.Close();
 
                             WebResponse response = request.GetResponse();
-                            MessageBox.Show(((HttpWebResponse)response).StatusDescription);
+                            //MessageBox.Show(((HttpWebResponse)response).StatusDescription);
 
                             dataStream = response.GetResponseStream();
                             StreamReader reader = new StreamReader(dataStream);
@@ -248,6 +223,8 @@ namespace EnvioMailing
                     }
                 }
             }
+
+            statusStrip.Items[1].Text = "PARADO";
         }
 
         private void button1_Click(object sender, EventArgs e)

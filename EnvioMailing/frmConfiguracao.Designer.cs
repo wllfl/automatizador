@@ -32,28 +32,33 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfiguracao));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnGravar = new System.Windows.Forms.ToolStripButton();
+            this.btnAdicionarArquivo = new System.Windows.Forms.ToolStripButton();
+            this.btnExcluirArquivo = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNomeRemetente = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtIntevaloEmail = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dgvArquivos = new System.Windows.Forms.DataGridView();
+            this.Excluir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Arquivos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtUrl = new System.Windows.Forms.TextBox();
-            this.txtIntevalo = new System.Windows.Forms.NumericUpDown();
-            this.txtQtdeBloco = new System.Windows.Forms.NumericUpDown();
+            this.txtIntevaloLote = new System.Windows.Forms.NumericUpDown();
+            this.txtQtdeLote = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.dgvArquivos = new System.Windows.Forms.DataGridView();
-            this.btnAdicionarArquivo = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnExcluirArquivo = new System.Windows.Forms.ToolStripButton();
-            this.Excluir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Arquivos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIntevalo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQtdeBloco)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIntevaloEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArquivos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIntevaloLote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQtdeLote)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -83,6 +88,28 @@
             this.btnGravar.ToolTipText = "Gravar Configurações e Fechar";
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
+            // btnAdicionarArquivo
+            // 
+            this.btnAdicionarArquivo.AutoSize = false;
+            this.btnAdicionarArquivo.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionarArquivo.Image")));
+            this.btnAdicionarArquivo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAdicionarArquivo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdicionarArquivo.Name = "btnAdicionarArquivo";
+            this.btnAdicionarArquivo.Size = new System.Drawing.Size(140, 40);
+            this.btnAdicionarArquivo.Text = "Adicionar TXT";
+            this.btnAdicionarArquivo.Click += new System.EventHandler(this.btnAdicionarArquivo_Click);
+            // 
+            // btnExcluirArquivo
+            // 
+            this.btnExcluirArquivo.AutoSize = false;
+            this.btnExcluirArquivo.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirArquivo.Image")));
+            this.btnExcluirArquivo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnExcluirArquivo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExcluirArquivo.Name = "btnExcluirArquivo";
+            this.btnExcluirArquivo.Size = new System.Drawing.Size(130, 40);
+            this.btnExcluirArquivo.Text = "Excluir TXT";
+            this.btnExcluirArquivo.Click += new System.EventHandler(this.btnExcluirArquivo_Click);
+            // 
             // btnFechar
             // 
             this.btnFechar.Image = ((System.Drawing.Image)(resources.GetObject("btnFechar.Image")));
@@ -96,91 +123,69 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtNomeRemetente);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtIntevaloEmail);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.dgvArquivos);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtUrl);
-            this.groupBox1.Controls.Add(this.txtIntevalo);
-            this.groupBox1.Controls.Add(this.txtQtdeBloco);
+            this.groupBox1.Controls.Add(this.txtIntevaloLote);
+            this.groupBox1.Controls.Add(this.txtQtdeLote);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(739, 407);
+            this.groupBox1.Size = new System.Drawing.Size(739, 432);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informações";
             // 
-            // txtUrl
+            // txtNomeRemetente
             // 
-            this.txtUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUrl.Location = new System.Drawing.Point(202, 138);
-            this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(521, 24);
-            this.txtUrl.TabIndex = 6;
+            this.txtNomeRemetente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeRemetente.Location = new System.Drawing.Point(510, 71);
+            this.txtNomeRemetente.Name = "txtNomeRemetente";
+            this.txtNomeRemetente.Size = new System.Drawing.Size(213, 24);
+            this.txtNomeRemetente.TabIndex = 15;
             // 
-            // txtIntevalo
+            // label7
             // 
-            this.txtIntevalo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIntevalo.Location = new System.Drawing.Point(202, 86);
-            this.txtIntevalo.Name = "txtIntevalo";
-            this.txtIntevalo.Size = new System.Drawing.Size(112, 24);
-            this.txtIntevalo.TabIndex = 5;
-            this.txtIntevalo.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(386, 76);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(118, 15);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Nome do Remente :";
             // 
-            // txtQtdeBloco
+            // txtIntevaloEmail
             // 
-            this.txtQtdeBloco.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQtdeBloco.Location = new System.Drawing.Point(200, 31);
-            this.txtQtdeBloco.Name = "txtQtdeBloco";
-            this.txtQtdeBloco.Size = new System.Drawing.Size(114, 24);
-            this.txtQtdeBloco.TabIndex = 4;
+            this.txtIntevaloEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIntevaloEmail.Location = new System.Drawing.Point(611, 28);
+            this.txtIntevaloEmail.Name = "txtIntevaloEmail";
+            this.txtIntevaloEmail.Size = new System.Drawing.Size(112, 24);
+            this.txtIntevaloEmail.TabIndex = 13;
             // 
-            // label3
+            // label6
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 145);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(197, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "URL do Script PHP (incluindo http:// ) *:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(374, 32);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(231, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Intervalo de envio por e-mail (Segundos):";
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Intervalo de envio em segundos:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Quantidade de e-mails por bloco * :";
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip1.ToolTipTitle = "Help";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(6, 391);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "* Campos obrigatórios";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 179);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(186, 15);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Lista dos Arquivos Selecionados:";
             // 
             // dgvArquivos
             // 
@@ -192,51 +197,15 @@
             this.Excluir,
             this.Arquivos});
             this.dgvArquivos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvArquivos.Location = new System.Drawing.Point(9, 217);
+            this.dgvArquivos.Location = new System.Drawing.Point(9, 197);
             this.dgvArquivos.Name = "dgvArquivos";
             this.dgvArquivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArquivos.ShowCellErrors = false;
             this.dgvArquivos.ShowCellToolTips = false;
             this.dgvArquivos.ShowRowErrors = false;
-            this.dgvArquivos.Size = new System.Drawing.Size(714, 161);
+            this.dgvArquivos.Size = new System.Drawing.Size(714, 211);
             this.dgvArquivos.TabIndex = 10;
             this.dgvArquivos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // btnAdicionarArquivo
-            // 
-            this.btnAdicionarArquivo.AutoSize = false;
-            this.btnAdicionarArquivo.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionarArquivo.Image")));
-            this.btnAdicionarArquivo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAdicionarArquivo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAdicionarArquivo.Name = "btnAdicionarArquivo";
-            this.btnAdicionarArquivo.Size = new System.Drawing.Size(140, 40);
-            this.btnAdicionarArquivo.Text = "Adicionar TXT";
-            this.btnAdicionarArquivo.Click += new System.EventHandler(this.btnAdicionarArquivo_Click);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            this.openFileDialog.Multiselect = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 201);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Lista dos Arquivos Selecionados:";
-            // 
-            // btnExcluirArquivo
-            // 
-            this.btnExcluirArquivo.AutoSize = false;
-            this.btnExcluirArquivo.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirArquivo.Image")));
-            this.btnExcluirArquivo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnExcluirArquivo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExcluirArquivo.Name = "btnExcluirArquivo";
-            this.btnExcluirArquivo.Size = new System.Drawing.Size(130, 40);
-            this.btnExcluirArquivo.Text = "Excluir TXT";
-            this.btnExcluirArquivo.Click += new System.EventHandler(this.btnExcluirArquivo_Click);
             // 
             // Excluir
             // 
@@ -255,11 +224,86 @@
             this.Arquivos.ReadOnly = true;
             this.Arquivos.Width = 700;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(6, 414);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(129, 15);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "* Campos obrigatórios";
+            // 
+            // txtUrl
+            // 
+            this.txtUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUrl.Location = new System.Drawing.Point(245, 113);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(478, 24);
+            this.txtUrl.TabIndex = 6;
+            // 
+            // txtIntevaloLote
+            // 
+            this.txtIntevaloLote.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIntevaloLote.Location = new System.Drawing.Point(245, 71);
+            this.txtIntevaloLote.Name = "txtIntevaloLote";
+            this.txtIntevaloLote.Size = new System.Drawing.Size(112, 24);
+            this.txtIntevaloLote.TabIndex = 5;
+            this.txtIntevaloLote.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            // 
+            // txtQtdeLote
+            // 
+            this.txtQtdeLote.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQtdeLote.Location = new System.Drawing.Point(243, 33);
+            this.txtQtdeLote.Name = "txtQtdeLote";
+            this.txtQtdeLote.Size = new System.Drawing.Size(114, 24);
+            this.txtQtdeLote.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 118);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(218, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "URL do Script PHP (incluindo http:// ) *:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(216, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Intervalo de envio por lote (Segundos):";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(47, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(190, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Quantidade de e-mails por lote * :";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Help";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Multiselect = true;
+            // 
             // frmConfiguracao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 477);
+            this.ClientSize = new System.Drawing.Size(763, 502);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -271,9 +315,10 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIntevalo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQtdeBloco)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIntevaloEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArquivos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIntevaloLote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQtdeLote)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -284,11 +329,11 @@
         private System.Windows.Forms.ToolStripButton btnGravar;
         private System.Windows.Forms.ToolStripButton btnFechar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NumericUpDown txtQtdeBloco;
+        private System.Windows.Forms.NumericUpDown txtQtdeLote;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown txtIntevalo;
+        private System.Windows.Forms.NumericUpDown txtIntevaloLote;
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label5;
@@ -299,5 +344,9 @@
         private System.Windows.Forms.ToolStripButton btnExcluirArquivo;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Excluir;
         private System.Windows.Forms.DataGridViewTextBoxColumn Arquivos;
+        private System.Windows.Forms.NumericUpDown txtIntevaloEmail;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtNomeRemetente;
+        private System.Windows.Forms.Label label7;
     }
 }

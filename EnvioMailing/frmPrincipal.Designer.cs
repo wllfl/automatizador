@@ -59,7 +59,6 @@
             this.btnCorpoEmail = new System.Windows.Forms.ToolStripButton();
             this.btnEnvio = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHost)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -68,7 +67,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.txtAssunto);
             this.groupBox1.Controls.Add(this.txtRementente);
             this.groupBox1.Controls.Add(this.txtNome);
@@ -357,16 +355,6 @@
             this.btnFechar.Text = "Fechar";
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(124, 129);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,7 +417,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
         private System.Windows.Forms.ToolStripStatusLabel stastusLista;
         private System.Windows.Forms.ToolStripButton btnFechar;
-        private System.Windows.Forms.Button button1;
     }
 }
 

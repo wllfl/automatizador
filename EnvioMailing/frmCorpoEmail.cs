@@ -61,11 +61,6 @@ namespace EnvioMailing
 
                 txtEmail.Text = iniFile.ReadString("Email", "texto");
             }
-            else
-            {
-                MessageBox.Show("Não possível encontrar o arquivo de configuração!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
     }
 }

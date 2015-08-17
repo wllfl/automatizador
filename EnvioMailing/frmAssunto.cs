@@ -81,11 +81,6 @@ namespace EnvioMailing
                 txtAssunto2.Text = iniFile.ReadString("Assunto", "assunto2");
                 txtAssunto3.Text = iniFile.ReadString("Assunto", "assunto3");
             }
-            else
-            {
-                MessageBox.Show("Não possível encontrar o arquivo de configuração!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void frmAssunto_Load(object sender, EventArgs e)

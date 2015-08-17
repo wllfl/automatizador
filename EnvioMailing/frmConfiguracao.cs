@@ -59,7 +59,7 @@ namespace EnvioMailing
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            if (txtQtdeBloco.Value > 0 && txtUrl.Text != "")
+            if (txtQtdeLote.Value > 0 && txtUrl.Text != "" && txtNomeRemetente.Text != "")
             {
                 gravarDados();
             }
@@ -75,8 +75,10 @@ namespace EnvioMailing
             {
                 var iniFile = new IniFile("./Config.ini");
 
-                iniFile.WriteInteger("Configuracao", "QtdeEmailBloco", Convert.ToInt32(txtQtdeBloco.Value));
-                iniFile.WriteInteger("Configuracao", "Intevalo", Convert.ToInt32(txtIntevalo.Value));
+                iniFile.WriteInteger("Configuracao", "QtdeEmailBloco", Convert.ToInt32(txtQtdeLote.Value));
+                iniFile.WriteInteger("Configuracao", "IntevaloLote", Convert.ToInt32(txtIntevaloLote.Value));
+                iniFile.WriteInteger("Configuracao", "IntevaloEmail", Convert.ToInt32(txtIntevaloEmail.Value));
+                iniFile.WriteString("Configuracao", "NomeRemetente", txtNomeRemetente.Text);
                 iniFile.WriteString("Configuracao", "URL", txtUrl.Text);
 
                 String nomeLog = "./Mailing.txt";
@@ -103,8 +105,10 @@ namespace EnvioMailing
             {
                 var iniFile = new IniFile("./Config.ini");
 
-                txtQtdeBloco.Value = iniFile.ReadInteger("Configuracao", "QtdeEmailBloco");
-                txtIntevalo.Value = iniFile.ReadInteger("Configuracao", "Intevalo");
+                txtQtdeLote.Value = iniFile.ReadInteger("Configuracao", "QtdeEmailBloco");
+                txtIntevaloLote.Value = iniFile.ReadInteger("Configuracao", "IntevaloLote");
+                txtIntevaloEmail.Value = iniFile.ReadInteger("Configuracao", "IntevaloEmail");
+                txtNomeRemetente.Text = iniFile.ReadString("Configuracao", "NomeRemetente");
                 txtUrl.Text = iniFile.ReadString("Configuracao", "URL");
 
                 if (File.Exists("./Mailing.txt"))
@@ -116,10 +120,6 @@ namespace EnvioMailing
                     }
                 }
                
-            }
-            else
-            {
-                MessageBox.Show("Não possível encontrar o arquivo de configuração!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
