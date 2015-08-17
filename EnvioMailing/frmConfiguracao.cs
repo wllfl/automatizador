@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Net;
+using System.Web;
 using Ini.Net;
+using System.Threading;
 
 namespace EnvioMailing
 {
@@ -51,7 +54,7 @@ namespace EnvioMailing
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            if (txtQtdeLote.Value > 0 && txtUrl.Text != "" && txtNomeRemetente.Text != "")
+            if (txtQtdeLote.Value > 0 && txtNomeRemetente.Text != "")
             {
                 gravarDados();
             }
@@ -330,6 +333,103 @@ namespace EnvioMailing
             }
 
             return retorno;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                foreach (String file in openFileDialog.FileNames)
+                {
+                    try
+                    {
+                        if (this.isFileValido(file.ToString()))
+                        {
+                            dgvArquivos.Rows.Add(false, file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Não possível carregar os arquivos!" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja remover todos os itens selecionados?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.excluirLinha();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja remover todos os TXTs da Listagem?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.excluirTudo();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (txtPara.Text != "" && txtDe.Text != "" && dgvScripts.Rows.Count > 0)
+            {
+                backgroundWorker.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show("É necessário preencher o campo \"PARA\", \"DE\" e possuir Scripts PHP gravados! ", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (File.Exists("./Script.txt"))
+            {
+                string[] lines = File.ReadAllLines(@"./Script.txt");
+                int contadorSucesso = 0;
+                int contadorErros = 0;
+
+                foreach (string line in lines)
+                {
+
+                    WebRequest request = WebRequest.Create(line);
+                    request.Method = "POST";
+                    request.ContentType = "application/x-www-form-urlencoded";
+
+                    string postData = HttpUtility.UrlEncode("NRemetente") + "=" + HttpUtility.UrlEncode(txtDe.Text) + "&";
+                    postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(txtDe.Text) + "&";
+                    postData += HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode("Testando Envio") + "&";
+                    postData += HttpUtility.UrlEncode("Emails") + "=" + HttpUtility.UrlEncode(txtPara.Text) + "&";
+                    postData += HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(line) + "&";
+                    postData += HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode("0");
+
+                    byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                    request.ContentLength = byteArray.Length;
+
+                    Stream dataStream = request.GetRequestStream();
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+                    dataStream.Close();
+
+                    WebResponse response = request.GetResponse();
+
+                    dataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(dataStream);
+                    string responseFromServer = reader.ReadToEnd();
+
+                    string[] retorno = responseFromServer.Split('#');
+                    contadorSucesso += Convert.ToInt32(retorno[1]);
+                    contadorErros += Convert.ToInt32(retorno[2]);
+
+                    reader.Close();
+                    dataStream.Close();
+                    response.Close();
+                }
+
+                MessageBox.Show("E-mails enviados ("+contadorSucesso+")!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /*******************************************************************************************************************************************/
