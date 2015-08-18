@@ -66,9 +66,11 @@ namespace EnvioMailing
         {
             try
             {
-                var iniFile = new IniFile("./Config.ini");
-
-                iniFile.WriteString("Email", "texto", txtEmail.Text);
+                String nomeScript = "./Email.txt";
+                using (StreamWriter writer = new StreamWriter(nomeScript, false))
+                {
+                    writer.WriteLine(txtEmail.Text);
+                }
 
                 MessageBox.Show("Gravado com sucesso!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -82,11 +84,13 @@ namespace EnvioMailing
 
         private void carregarDados()
         {
-            if (File.Exists("./Config.ini"))
+            if (File.Exists("./Email.txt"))
             {
-                var iniFile = new IniFile("./Config.ini");
-
-                txtEmail.Text = iniFile.ReadString("Email", "texto");
+                string[] lines = File.ReadAllLines(@"./Email.txt");
+                foreach (string line in lines)
+                {
+                    txtEmail.Text += line + "\r\n";
+                }
             }
         }
 

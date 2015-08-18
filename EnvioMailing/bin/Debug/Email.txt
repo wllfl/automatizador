@@ -1,15 +1,4 @@
-[Configuracao]
-QtdeEmailBloco=30
-QtdeEmailScript=10
-IntevaloLote=0
-IntevaloEmail=0
-NomeRemetente=Mailing
-[Assunto]
-assunto1=Assunto 1
-assunto2=Assunto 2
-assunto3=Assunto 3
-[Email]
-texto=<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -18,4 +7,4 @@ texto=<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
 <a href="http://bit.ly/1K16B19"><img src="https://ug12nw.bl3302.livefilestore.com/y3mGpbdcbMtrhAif00gvFW6x-5lSeN9uxgGyZCs_5BlBr302UMekPYW3Ars_UktUWHNCVW65hUuaLrPVPcKWIgEVl6p9_CDY916eVFhSQL9rdKVBqtmHcFAMmDmq8_I8fFaj7KuKdhoIK2XlI2LmS8QGzPYLaQZ47F2ILqfDizILyQ/nwe-02912.png?psid=1"></a>
 </body>
 </script>    </div>
-</html> 
+</html>

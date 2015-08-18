@@ -104,7 +104,6 @@ namespace EnvioMailing
                 this.IntevaloEmail = iniFile.ReadInteger("Configuracao", "IntevaloEmail");
                 this.Remetente = iniFile.ReadString("Configuracao", "NomeRemetente");
                 this.Diretorio = iniFile.ReadString("Configuracao", "Diretorio");
-                this.CorporEmail = iniFile.ReadString("Email", "Texto");
 
                 var assunto1 = iniFile.ReadString("Assunto", "assunto1");
                 if (assunto1 != "")
@@ -153,6 +152,15 @@ namespace EnvioMailing
                     {
                         listaScript.Add(line);
                         dgvHost.Rows.Add(line);
+                    }
+                }
+
+                if (File.Exists("./Email.txt"))
+                {
+                    string[] lines = File.ReadAllLines(@"./Email.txt");
+                    foreach (string line in lines)
+                    {
+                        this.CorporEmail += line;
                     }
                 }
 
