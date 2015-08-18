@@ -216,7 +216,7 @@ namespace EnvioMailing
                         {
                             Random random = new Random();
                             int randomNumber = random.Next(0, this.listaAssunto.Count());
-                            string assunto = this.listaAssunto.ElementAt(randomNumber);
+                            string assunto = this.listaAssunto.ElementAt(randomNumber) + " - (" + random.Next(1000, 9999) + ")";
 
                             if (contadorGeral == this.QtdeScript)
                             {
