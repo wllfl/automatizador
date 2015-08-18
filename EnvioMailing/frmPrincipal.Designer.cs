@@ -60,6 +60,7 @@
             this.btnEnvio = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.btnParar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHost)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -294,6 +295,7 @@
             this.btnAssuntos,
             this.btnCorpoEmail,
             this.btnEnvio,
+            this.btnParar,
             this.btnFechar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -361,6 +363,18 @@
             this.backgroundWorker.WorkerSupportsCancellation = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             // 
+            // btnParar
+            // 
+            this.btnParar.AutoSize = false;
+            this.btnParar.Image = ((System.Drawing.Image)(resources.GetObject("btnParar.Image")));
+            this.btnParar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnParar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnParar.Name = "btnParar";
+            this.btnParar.Size = new System.Drawing.Size(90, 40);
+            this.btnParar.Text = "Parar";
+            this.btnParar.Visible = false;
+            this.btnParar.Click += new System.EventHandler(this.btnParar_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,6 +438,7 @@
         private System.Windows.Forms.ToolStripStatusLabel stastusLista;
         private System.Windows.Forms.ToolStripButton btnFechar;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.ToolStripButton btnParar;
     }
 }
 

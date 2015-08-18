@@ -45,7 +45,10 @@ namespace EnvioMailing
         {
             if (this.listaMailing.Count() > 0 && this.listaAssunto.Count() > 0 && this.CorporEmail != "" && this.listaScript.Count() > 0)
             {
-                //enviarEmail();
+                listaEmailsEnviados.Items.Clear();
+                listaRetorno.Items.Clear();
+                btnEnvio.Visible = false;
+                btnParar.Visible = true;
                 backgroundWorker.RunWorkerAsync();
             }
             else
@@ -220,7 +223,7 @@ namespace EnvioMailing
 
                             if (contadorGeral == this.QtdeScript)
                             {
-                                if (this.listaScript.Count() == (indiceScript-1))
+                                if (this.listaScript.Count() == (indiceScript - 1))
                                 {
                                     indiceScript = 1;
                                 }
@@ -228,7 +231,7 @@ namespace EnvioMailing
                                 {
                                     indiceScript++;
                                 }
-                                
+
                                 url = this.listaScript.ElementAt(indiceScript);
                             }
                             else
@@ -283,6 +286,9 @@ namespace EnvioMailing
                     }
                 }
             }
+
+            btnEnvio.Visible = true;
+            btnParar.Visible = false;
             statusStrip.Items[1].Text = "PARADO";
         }
 
@@ -319,6 +325,13 @@ namespace EnvioMailing
         private void setAssuntoText(string texto)
         {
             txtAssunto.Text = texto;
+        }
+
+        /*******************************************************************************************************************************************/
+
+        private void btnParar_Click(object sender, EventArgs e)
+        {
+            backgroundWorker.CancelAsync();
         }
 
         /*******************************************************************************************************************************************/

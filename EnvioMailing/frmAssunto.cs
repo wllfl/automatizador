@@ -38,10 +38,6 @@ namespace EnvioMailing
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseja gravar as modificações?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-            {
-                this.gravarDados();
-            }
             this.fPrincipal.carregarDados();
             this.Close();
         }
