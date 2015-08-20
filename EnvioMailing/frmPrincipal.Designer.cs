@@ -58,9 +58,9 @@
             this.btnAssuntos = new System.Windows.Forms.ToolStripButton();
             this.btnCorpoEmail = new System.Windows.Forms.ToolStripButton();
             this.btnEnvio = new System.Windows.Forms.ToolStripButton();
+            this.btnParar = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.btnParar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHost)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -347,6 +347,18 @@
             this.btnEnvio.Text = "Iniciar Envio";
             this.btnEnvio.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
+            // btnParar
+            // 
+            this.btnParar.AutoSize = false;
+            this.btnParar.Image = ((System.Drawing.Image)(resources.GetObject("btnParar.Image")));
+            this.btnParar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnParar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnParar.Name = "btnParar";
+            this.btnParar.Size = new System.Drawing.Size(90, 40);
+            this.btnParar.Text = "Parar";
+            this.btnParar.Visible = false;
+            this.btnParar.Click += new System.EventHandler(this.btnParar_Click);
+            // 
             // btnFechar
             // 
             this.btnFechar.Image = ((System.Drawing.Image)(resources.GetObject("btnFechar.Image")));
@@ -362,18 +374,7 @@
             this.backgroundWorker.WorkerReportsProgress = true;
             this.backgroundWorker.WorkerSupportsCancellation = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
-            // 
-            // btnParar
-            // 
-            this.btnParar.AutoSize = false;
-            this.btnParar.Image = ((System.Drawing.Image)(resources.GetObject("btnParar.Image")));
-            this.btnParar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnParar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnParar.Name = "btnParar";
-            this.btnParar.Size = new System.Drawing.Size(90, 40);
-            this.btnParar.Text = "Parar";
-            this.btnParar.Visible = false;
-            this.btnParar.Click += new System.EventHandler(this.btnParar_Click);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // frmPrincipal
             // 

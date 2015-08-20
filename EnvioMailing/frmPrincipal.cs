@@ -26,7 +26,7 @@ namespace EnvioMailing
         private string Diretorio = null;
         private int QtdeAssuntos = 0;
         private int QtdeEmail = 0;
-        private string CorporEmail = null;
+        private string CorpoEmail = null;
         List<string> listaMailing = new List<string>();
         List<string> listaAssunto = new List<string>();
         List<string> listaScript = new List<string>();
@@ -43,7 +43,7 @@ namespace EnvioMailing
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            if (this.listaMailing.Count() > 0 && this.listaAssunto.Count() > 0 && this.CorporEmail != "" && this.listaScript.Count() > 0)
+            if (this.listaMailing.Count() > 0 && this.listaAssunto.Count() > 0 && this.CorpoEmail != "" && this.listaScript.Count() > 0)
             {
                 listaEmailsEnviados.Items.Clear();
                 listaRetorno.Items.Clear();
@@ -96,6 +96,7 @@ namespace EnvioMailing
             {
                 this.QtdeEmail = 0;
                 this.QtdeAssuntos = 0;
+                this.CorpoEmail = null;
                 this.listaAssunto.Clear();
                 this.listaMailing.Clear();
 
@@ -163,7 +164,7 @@ namespace EnvioMailing
                     string[] lines = File.ReadAllLines(@"./Email.txt");
                     foreach (string line in lines)
                     {
-                        this.CorporEmail += line;
+                        this.CorpoEmail += line;
                     }
                 }
 
@@ -249,7 +250,7 @@ namespace EnvioMailing
 
                             string postData = HttpUtility.UrlEncode("NRemetente") + "=" + HttpUtility.UrlEncode(this.Remetente) + "&";
                             postData += HttpUtility.UrlEncode("ERemetente") + "=" + HttpUtility.UrlEncode(nameFile) + "&";
-                            postData += HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode(this.CorporEmail) + "&";
+                            postData += HttpUtility.UrlEncode("Conteudo") + "=" + HttpUtility.UrlEncode(this.CorpoEmail) + "&";
                             postData += HttpUtility.UrlEncode("Emails") + "=" + HttpUtility.UrlEncode(listaEmails) + "&";
                             postData += HttpUtility.UrlEncode("Assunto") + "=" + HttpUtility.UrlEncode(assunto) + "&";
                             postData += HttpUtility.UrlEncode("Interval") + "=" + HttpUtility.UrlEncode(Convert.ToString(this.IntevaloEmail));
@@ -287,8 +288,6 @@ namespace EnvioMailing
                 }
             }
 
-            btnEnvio.Visible = true;
-            btnParar.Visible = false;
             statusStrip.Items[1].Text = "PARADO";
         }
 
@@ -332,6 +331,12 @@ namespace EnvioMailing
         private void btnParar_Click(object sender, EventArgs e)
         {
             backgroundWorker.CancelAsync();
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            btnEnvio.Visible = true;
+            btnParar.Visible = false;
         }
 
         /*******************************************************************************************************************************************/
