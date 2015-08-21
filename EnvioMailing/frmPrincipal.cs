@@ -280,6 +280,7 @@ namespace EnvioMailing
                             dataStream.Close();
                             response.Close();
                             contador = 0;
+                            listaEmails = null;
 
                             Thread.Sleep(this.IntevaloLote * 1000);
                         }
