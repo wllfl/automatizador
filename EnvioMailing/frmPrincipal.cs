@@ -286,6 +286,8 @@ namespace EnvioMailing
 
                     }
                 }
+                listaEmails = null;
+                contadorGeral = 0;
             }
 
             statusStrip.Items[1].Text = "PARADO";

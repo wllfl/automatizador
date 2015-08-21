@@ -84,32 +84,38 @@
             // 
             // txtAssunto
             // 
+            this.txtAssunto.BackColor = System.Drawing.Color.White;
             this.txtAssunto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAssunto.Location = new System.Drawing.Point(77, 91);
+            this.txtAssunto.Location = new System.Drawing.Point(77, 110);
             this.txtAssunto.Name = "txtAssunto";
+            this.txtAssunto.ReadOnly = true;
             this.txtAssunto.Size = new System.Drawing.Size(228, 24);
             this.txtAssunto.TabIndex = 5;
             // 
             // txtRementente
             // 
+            this.txtRementente.BackColor = System.Drawing.Color.White;
             this.txtRementente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRementente.Location = new System.Drawing.Point(77, 60);
+            this.txtRementente.Location = new System.Drawing.Point(77, 68);
             this.txtRementente.Name = "txtRementente";
+            this.txtRementente.ReadOnly = true;
             this.txtRementente.Size = new System.Drawing.Size(228, 24);
             this.txtRementente.TabIndex = 4;
             // 
             // txtNome
             // 
+            this.txtNome.BackColor = System.Drawing.Color.White;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(77, 28);
             this.txtNome.Name = "txtNome";
+            this.txtNome.ReadOnly = true;
             this.txtNome.Size = new System.Drawing.Size(228, 24);
             this.txtNome.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 98);
+            this.label3.Location = new System.Drawing.Point(23, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 2;
@@ -118,7 +124,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 67);
+            this.label2.Location = new System.Drawing.Point(9, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 1;
